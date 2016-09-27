@@ -13,14 +13,14 @@ class Brch_Employees extends \WpRecord {
 
 class Brch_Suppliers extends \WpRecord {
 	public static function initialize() {
-		self::field("supplierID","integer not null");	
+		self::field("supplierID","integer not null auto_increment");	
 		self::field("supplierName","varchar(255) not null");
 	}
 }
 
 class Brch_MilkReceivingDetails extends \WpRecord {
 	public static function initialize() {
-		self::field("receiptID","integer not null");	
+		self::field("receiptID","integer not null ");	
 		self::field("supplierID","integer not null");
 		self::field("employeeID","varchar(255) not null");
 		self::field("timearrived","varchar(255) not null");
@@ -37,8 +37,8 @@ class Brch_Churns extends \WpRecord {
 
 class Brch_ChurnTests extends \WpRecord {
 	public static function initialize() {
-		self::field("churnTestID","integer not null auto_increament");
-		self::field("supplierID","integer not null");
+		self::field("churnTestID","integer not null auto_increment");
+		self::field("churnID","integer not null");
 		self::field("smell","varchar(255) not null");
 		self::field("appearance","varchar(255) not null");
 		self::field("temperature","float(4, 2) not null");
@@ -49,19 +49,18 @@ class Brch_ChurnTests extends \WpRecord {
 	}
 }
 
-
 function activate_plugin(){
 	Brch_Employees::install();
 	Brch_Suppliers::install();
 	Brch_MilkReceivingDetails::install();
 	Brch_Churns::install();
+	Brch_ChurnTests::install();
 }
-
-
 
 function deactivate_wpar_test() {
 	Brch_Employees::uninstall();
 	Brch_Suppliers::uninstall();
 	Brch_MilkReceivingDetails::uninstall();
 	Brch_Churns::uninstall();
+	Brch_ChurnTests::uninstall();
 }
